@@ -13,6 +13,9 @@ in {
     # Development
     python312
     dotnet-sdk_9
+
+    # Fonts
+    nerd-fonts.fantasque-sans-mono
   ];
 }
 
