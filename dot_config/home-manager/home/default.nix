@@ -13,10 +13,27 @@
     ./packages.nix
   ];
 
-  programs.home-manager.enable = true;
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+
+    loginShellInit = ''
+      # Load Nix environment
+      if test -e /etc/profile.d/nix.sh
+        bass source /etc/profile.d/nix.sh
+      end
+    '';
+  };
+
+  programs.fish.plugins = [
+    {
+      name = "bass";
+      src = pkgs.fishPlugins.bass.src;
+    }
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  programs.home-manager.enable = true;
 }
